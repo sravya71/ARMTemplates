@@ -1,0 +1,44 @@
+{
+  "$Schema": "http://schema.management.azure.com/schemas/2015-05-01/deploymentTemplate.json#",
+  "ContentVersion": "1.0.0.0",
+  "Parameters": {
+   "ResourceGroupName": {
+     "type": "string",
+     "Metadata": {
+      "Description": "(Please specify the Resource Group Name)"
+     }
+   },
+   "ResourceGroupLocation": {
+      "type": "string",
+       "DefaultValue": "East US",
+       "Allowed Value": [
+          "East US",
+          "East US 2",
+          "Central US",
+          "NorthCentral US",
+          "West US",
+          "East US"
+       ] 
+     "Metadata": {
+     "Description": "(Please specify the Location of the ResourceGroupLocation)",
+     }
+   }
+  },
+  "Variables": {
+   "ResourceGroupName": "ResourceGroupName",
+   "ResourceGroupLocation": "ResourceGroupLocation"
+  },
+  "Resources": [
+  {
+    "type" :"Microsoft.Resources/ResourceGroups",
+     "apiversion": "2018-05-01",
+     "Name": "(concat.parameters('ResourceGroupName'))",
+     "Location": "(concat.parameters('ResourceGroupLocation'))",
+     "comments": "(Resource Group has been created)"
+  }
+  ],
+   "Outputs": {
+   "Type": "string",
+   "Value": "(concat.parameters('ResourceGroupName'))"
+  }
+}
